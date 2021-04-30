@@ -21,15 +21,10 @@ Nucleus requres the 'requests' module to work. You can install it by running `pi
 ## How to Use
 Simply run the python file named Nucleus.
 
-## Todo
+## TODO
 - Better input/variable names
 - refactor
-    - if name==main
     - functions
-    - class for input data
-- Create files with Arcensoth's IMP-Doc
-    - Function headers
-        - `#> namespace:filename`
 - Variables for use in other options
     - Minecraft directory
     - Template world name
