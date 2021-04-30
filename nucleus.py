@@ -24,19 +24,40 @@ def gen_pack_mcmeta(dp_path,dp_name,dev_name):
 
 def global_advancements(g_adv_path,namespace,dev_name,skull_value):
     """Create the global advancements"""
-    root = {"display": {"title": "Installed Datapacks","description": "","icon": {"item": "minecraft:knowledge_book"},"background": "minecraft:textures/block/gray_concrete.png","show_toast": False,"announce_to_chat": False},"criteria": {"trigger": {"trigger": "minecraft:tick"}}}
+    root = {
+            "display":
+            {
+                "title": "Installed Datapacks",
+                "description": "",
+                "icon":
+                {
+                    "item": "minecraft:knowledge_book"
+                    },
+                "background": "minecraft:textures/block/gray_concrete.png",
+                "show_toast": False,
+                "announce_to_chat": False
+                },
+            "criteria":
+            {
+                "trigger":
+                {
+                    "trigger":
+                    "minecraft:tick"
+                    }
+                }
+            }
     dev = {"display": {"title": f"{dev_name}","description": "","icon": {"item": "minecraft:player_head","nbt": f"{{SkullOwner:{{Name: \"{dev_name}\", Properties: {{textures: [{{Value: \"{skull_value}\"}}]}}}}}}"},"show_toast": False,"announce_to_chat": False},"parent": "global:root","criteria": {"trigger": {"trigger": "minecraft:tick"}}}
 
-    with open(f'{g_adv_path}/root.json', 'w') as f:
-        f.write(json.dumps(root, indent=5, sort_keys=True))
-    with open(f'{g_adv_path}/{namespace}.json', 'w') as f:
-        f.write(json.dumps(dev, indent=5, sort_keys=True))
+    with open(f'{g_adv_path}/root.json', 'w') as fout:
+        fout.write(json.dumps(root, indent=5, sort_keys=True))
+    with open(f'{g_adv_path}/{namespace}.json', 'w') as fout:
+        fout.write(json.dumps(dev, indent=5, sort_keys=True))
 
 def dp_advancement(dp_adv_path,project_name,dp_name,dp_desc,dp_item,namespace):
     """Create the datapack advancement"""
     dp_adv = {"display": {"title": f"{dp_name.title()}","description": f"{dp_desc}","icon": {"item": f"minecraft:{dp_item}"},"announce_to_chat": False,"show_toast": False},"parent": f"global:{namespace}","criteria": {"trigger": {"trigger": "minecraft:tick"}}}
-    with open(f'{dp_adv_path}/{project_name}.json', 'w') as f:
-        f.write(json.dumps(dp_adv, indent=5, sort_keys=True))
+    with open(f'{dp_adv_path}/{project_name}.json', 'w') as fout:
+        fout.write(json.dumps(dp_adv, indent=5, sort_keys=True))
 
 def mc_tags(mc_tags_path,namespace,project_name):
     """Create the tick and load files inside minecraft:%"""
@@ -103,7 +124,7 @@ def main():
     dp_tags_path = f"{dp_path}/{dp_name}/data/{namespace}/tags/functions/{project_name}"
     dp_fun_path = f"{dp_path}/{dp_name}/data/{namespace}/functions/{project_name}"
 
-    try_mkdir(g_adv_path)   
+    try_mkdir(g_adv_path)
     try_mkdir(dp_adv_path)
     try_mkdir(mc_tags_path)
     try_mkdir(dp_tags_path)
@@ -118,7 +139,7 @@ def main():
 
     print(
         f'''Template generated successfully with the following info:
-        
+
         Datapack developer: {dev_name}
         Datapack name: {dp_name}
         Datapack namespace: {namespace}
