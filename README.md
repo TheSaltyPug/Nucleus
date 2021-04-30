@@ -12,6 +12,7 @@ More features might be added in the future upon request or necessity .
 
 ## Features
 - Creates datapacks based on CLI input
+- Created files follow Arcensoth's [IMP-Doc](https://github.com/Arcensoth/imp-spec/blob/master/docs/imp_doc.mdhttps://github.com/Arcensoth/imp-spec/blob/master/docs/imp_doc.md)
 
 ## Installation
 Clone this repository or copy the file `nucleus.py` into the directory where you want to create a new datapack.
